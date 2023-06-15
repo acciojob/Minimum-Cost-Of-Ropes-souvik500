@@ -1,18 +1,25 @@
-function minCost(event) {
-	event.preventDefault();
-	var input = document.querySelector("input").value;
-	var arr = input.split(",");
-	var cost=0;
-	while(arr.length > 1){
-		arr.sort(function (a,b) {return a-b});
-		var temp=Number(arr[0]) + Number(arr[1]);
-		cost+=temp;
-		arr.push(temp);
-		arr.splice(0,2);
-		arr.sort(function (a,b) {return a-b});
-		
-	}
-	document.querySelector("div").textContent=cost;
-}
+function calculateMinCost() {
+
+	var inputData=document.querySelector("#rope-lengths").value;
+	var inputArr=inputData.split(",");
 	
- 
+
+	for (let index = 0 ; index < inputArr.length; index++) {
+		inputArr[index]=Number(inputArr[index]);
+	}
+	
+	var cost=0;
+	inputArr.sort(function(a,b){return a-b});
+
+	while(inputArr.length>1){
+		var newRope=inputArr[0]+inputArr[1];
+		cost+=newRope;
+		inputArr.splice(0,2);
+		inputArr.push(newRope);
+		inputArr.sort(function(a,b){return a-b});
+	}
+	
+	document.getElementById('result').textContent=cost;
+  
+  
+}  
